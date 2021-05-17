@@ -19,6 +19,6 @@ lzma-sys = { git = "https://github.com/Seeneva/lzma-sys.git", branch = "main" }
 [build-dependencies]
 pkg-config = "0.3"
 build-deps = "0.1"
-bindgen = "0.55"
+bindgen = "0.58"
 cmake = "0.1"
 build-helper = { git = "https://github.com/Seeneva/build-helper-rs.git", branch = "main" }

@@ -16,7 +16,7 @@ use pkg_config;
 use build_helper::*;
 
 /// libarchive min version
-const VERSION: &str = "3.4.3";
+const VERSION: &str = "3.5.1";
 
 fn main() {
     let links_lib_name = env::var("CARGO_MANIFEST_LINKS").unwrap();
@@ -148,20 +148,20 @@ fn main() {
 
     // Generate C bindings
     let mut bindgen_builder = bindgen::builder()
-        .whitelist_recursively(false)
-        .whitelist_function(r"^archive_.+")
-        .whitelist_type(r"^archive[_\w]*")
-        .whitelist_var(r"^ARCHIVE_\w+")
-        .whitelist_var(r"^AE[_\w]+")
-        .whitelist_type(r"^la_.+")
-        .blacklist_item(r"^ARCHIVE_VERSION_\w+")
+        .allowlist_recursively(false)
+        .allowlist_function(r"^archive_.+")
+        .allowlist_type(r"^archive[_\w]*")
+        .allowlist_var(r"^ARCHIVE_\w+")
+        .allowlist_var(r"^AE[_\w]+")
+        .allowlist_type(r"^la_.+")
+        .blocklist_item(r"^ARCHIVE_VERSION_\w+")
         // use enum in the wrapper.h
-        .blacklist_item("ARCHIVE_EOF")
-        .blacklist_item("ARCHIVE_OK")
-        .blacklist_item("ARCHIVE_RETRY")
-        .blacklist_item("ARCHIVE_WARN")
-        .blacklist_item("ARCHIVE_FAILED")
-        .blacklist_item("ARCHIVE_FATAL")
+        .blocklist_item("ARCHIVE_EOF")
+        .blocklist_item("ARCHIVE_OK")
+        .blocklist_item("ARCHIVE_RETRY")
+        .blocklist_item("ARCHIVE_WARN")
+        .blocklist_item("ARCHIVE_FAILED")
+        .blocklist_item("ARCHIVE_FATAL")
         .header("wrapper.h")
         .rustfmt_bindings(true);
 
